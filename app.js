@@ -12,6 +12,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const app = express();
 
+//ejs environment
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -19,7 +20,7 @@ app.set("view engine", "ejs");
 ///////////////////////////SESSION/////////////////////////////////
 app.use(
   session({
-    secret: "HelloEverybody",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -45,7 +46,7 @@ db.once("open", function () {
 
 const userSchema = new mongoose.Schema({
   first: String,
-  last: String,
+  username: String,
   email: String,
   password: String,
   secret: String
@@ -53,7 +54,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-///////////////////////// REGISTER //////////////////////////////////////////
+///////////////////////// PASSPORT //////////////////////////////////////////
 
 const User = new mongoose.model("User", userSchema);
 
@@ -83,8 +84,8 @@ app.get("/secrets", (req,res)=>{
           }else{
               if(foundUser){
                   res.render("secrets",{
-                      usersWithSecrets: foundUser
-                  })
+                    usersWithSecrets: foundUser,
+                    currentUser: req.user.username                 })
               }
           }
       })
@@ -93,6 +94,8 @@ app.get("/secrets", (req,res)=>{
     res.redirect("/login");
   }
 })
+
+
 app.get("/submit", (req,res)=>{
   if(req.isAuthenticated()){
     res.render("submit")
@@ -101,6 +104,7 @@ app.get("/submit", (req,res)=>{
     res.redirect("/login");
   }
 })
+
 app.post("/submit", (req,res)=>{
   const secretSubmitted = req.body.secret;
   const currUser = req.user._id; //we get the current users data from req.user
@@ -120,14 +124,32 @@ app.post("/submit", (req,res)=>{
   })
 })
 
+//dynamic page for each profile
+app.get("/profile/:currentUser", (req,res)=>{
+  // console.log(req.user);
+  const currUserObject = req.user;
+
+  res.render("dashboard",{
+    currentUserObj: currUserObject
+  })
+})
+
 app.get("/logout", (req,res)=>{
   req.logout();
   res.redirect("/");
 })
 
 app.post("/register", (req,res)=>{
-  User.register({username: req.body.username}, req.body.password, (err,user)=>{
-    if(err){
+    //storing info during registration
+    const newUser = new User({
+      first: req.body.firstName,
+      last: req.body.lastName,
+      username: req.body.username
+  })
+
+  //using in-built register method of passport
+User.register(newUser, req.body.password, (err,user)=>{
+  if(err){
       console.log(err);
       res.redirect("/register");
     }
@@ -156,7 +178,7 @@ app.post("/login", (req,res)=>{
   })
 })
 
-/////////////////////////////////////////////////////////////////////
+/////////////////////////////PORT////////////////////////////////////
 
 app.listen(3000, function () {
   console.log("Server is running on port 3000.");
