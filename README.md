@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/Kirti-3549/CaloFactor">
-    <img src="public/images/foodlogo.png" alt="Logo" width="120" height="120">
+    <img src="public/images/foodlogo.jpg" alt="Logo" width="120" height="120">
   </a>
 
 </div>
@@ -20,8 +20,12 @@
     A demo .env file is given below :
 
     > SECRET=XXXXXX
+
+
     > DATABASE=mongodb+srv://admin-XXXXXX:XXXX@XXXX 
     > (or mongodb://localhost:27017/XXX)
+
+
     > API_KEY=XXXXXXXX
 6.  Final Step to go live !
 
