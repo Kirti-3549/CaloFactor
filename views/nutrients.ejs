@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Food Item Input and JSON Table</title>
+  <title>Nutrients Calculator</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -17,12 +17,12 @@
         <div>
           <img src="/images/foodlogo.png" alt="" width="120" height="120" />
         </div>
-        <form action="/meal" method="POST" id="foodForm" >
+        <form action="/nutrients" method="POST" id="foodForm" >
           <div class="form-group">
             <label for="foodItem" style="color: white; font-size:1.3rem">Enter Food Item:</label>
             <input type="text" name="food" class="form-control" id="foodItem" placeholder="e.g. 2 Apples, 1 Banana">
           </div>
-          <button type="submit" class="btn btn-primary">Get Nutrients</button>
+          <button type="submit" class="btn btn-primary">Get Nutrients Info</button>
         </form>
       </div>
       <% if (foodItemList) { %>
@@ -57,8 +57,6 @@
                 <th>Fat (g)</th>
                 <th>Saturated Fat (g)</th>
                 <th>Protein (g)</th>
-                <th>Sodium (mg)</th>
-                <th>Potassium (mg)</th>
                 <th>Cholesterol (mg)</th>
                 <th>Carbohydrates (g)</th>
                 <th>Fiber (g)</th>
@@ -87,12 +85,6 @@
                     <%= foodItem.protein_g %>
                   </td>
                   <td>
-                    <%= foodItem.sodium_mg %>
-                  </td>
-                  <td>
-                    <%= foodItem.potassium_mg %>
-                  </td>
-                  <td>
                     <%= foodItem.cholesterol_mg %>
                   </td>
                   <td>
@@ -111,7 +103,6 @@
         </div>
         <% } %>
     </span>
-
+      
     </body>
-
 </html>
