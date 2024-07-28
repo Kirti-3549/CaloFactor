@@ -1,33 +1,40 @@
 <%- include('partials/header') %>
+    <%- include('partials/sidenav') %>
+        <title>My Account</title>
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+            integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/styles.css">
 
-<section class="vh-100" style="background-color: #f4f5f7;">
-    <div class="container-fluid py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-lg-6 mb-4 mb-lg-0">
-                <div class="card mb-3" style="border-radius: .5rem;">
-                    <div class="row g-0">
-                        <div class="col-md-4 gradient-custom text-center text-white"
-                            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <%if(currentUserObj.gender==="male"){%>
-                                <img src="https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/18-512.png"
-                                    alt="Avatar" class="img-fluid my-5" style="width: 100px;" />
-                                <%}else{%>
-                                    <img src="https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png"
+        <div class="container-fluid py-5" style="margin-top: 100px; margin-left:50px">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <%if(currentUserObj.gender==="male"){%>
+                                    <img src="https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/18-512.png"
                                         alt="Avatar" class="img-fluid my-5" style="width: 100px;" />
-                                    <%}%>
+                                    <%}else{%>
+                                        <img src="https://cdn1.iconfinder.com/data/icons/avatars-1-5/136/87-512.png"
+                                            alt="Avatar" class="img-fluid my-5" style="width: 100px;" />
+                                        <%}%>
 
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body p-4">
-                                        <h6>Personal Information</h6>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>Name</h6>
-                                                <p class="text-muted">
-                                                    <%=currentUserObj.first+" "+currentUserObj.last%></p>
                             </div>
-                            <div class=" col-6 mb-3">
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Personal Information</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Name</h6>
+                                            <p class="text-muted">
+                                                <%=currentUserObj.first+" "+currentUserObj.last%></p>
+                                            </div>
+                                            <div class=" col-6 mb-3">
                                                         <h6>Email</h6>
                                                         <p class="text-muted">
                                                             <%=currentUserObj.username%>
@@ -57,25 +64,15 @@
                                                     <%=currentUserObj.cal%> Cal
                                                 </p>
                                             </div>
-    
-    
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <div class="jumbotron text-center">
-                    <a class="btn btn-light" href="/user/logout" role="button">Log Out</a>
-                    <a class="btn btn-primary" href="/bmi" role="button">Calculate BMI</a>
-                    <a class="btn btn-primary" href="/meal" role="button">Meal Counter</a>
-                </div>
-
             </div>
-        </section>
-    
+        </body>
 
         <%- include('partials/footer') %>
