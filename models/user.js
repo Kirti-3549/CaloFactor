@@ -30,9 +30,9 @@ const userSchema = new mongoose.Schema({
     nutrients: {
         type: Map,
         of: dietSchema
-
+      
     }
-
+    
 });
 userSchema.plugin(passportLocalMongoose);
 

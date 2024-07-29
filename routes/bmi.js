@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
     const age = parseFloat(req.body.age);
     const gender = req.body.sex;
     const activity = parseFloat(req.body.activity);
-    
+
     const calorie = Math.floor(calculateBMR(weight, height, gender, activity));
     const bmi = calculateBMI(weight, height);
 

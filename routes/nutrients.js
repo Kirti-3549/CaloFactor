@@ -29,7 +29,7 @@ function mergeNutrients(prevNutrients, foodItemList){
 
 function getFoodItemList(food) {
     const API_KEY = process.env.API_KEY;
-
+    
     return new Promise((resolve, reject) => {
         request.get(
             {
@@ -76,7 +76,7 @@ async function updateNutrients(userId, foodItemList) {
         if(user.nutrients && user.nutrients.has(today)){
             prevNutrients = user.nutrients.get(today);
         }
-
+        
         const mergedNutrients = mergeNutrients(prevNutrients,foodItemList);
 
         // Building the map<Date, nutrientsDetailsJSON> to store in DB

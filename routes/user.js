@@ -60,7 +60,7 @@ router.get("/myprofile", (req, res) => {
     else{
         res.redirect("/user/register");
     }
-
+    
 });
 
 // Logout Route
